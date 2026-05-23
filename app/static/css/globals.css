@@ -1,0 +1,24 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --background:#050505;
+    --card-bg:rgba(255,255,255,.03);
+    --border-color:rgba(255,255,255,.08);
+    --gold:#d4a73f;
+    --white:#ffffff;
+    --text-muted:rgba(255,255,255,.65);
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+    background:#050505;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+    font-family: 'Encode Sans';
+}

@@ -1,0 +1,67 @@
+.mockup-wrapper{
+
+    position:relative;
+
+    width:90%;
+
+    max-width:1400px;
+
+}
+
+.mockup-image{
+
+    width:100%;
+
+    display:block;
+
+}
+
+.mockup-text{
+    position:absolute;
+    color:white;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.preview-name{
+    top:37%;
+    left:27%;
+    font-size:0.8rem;
+    color:var(--gold);
+    font-family: 'Orbitron';
+}
+
+.preview-rank{
+    top:45%;
+    left:27%;
+    font-size:0.8rem;
+    color:var(--gold);
+    font-family: 'Orbitron';
+
+}
+
+.preview-passport{
+    top:52%;
+    left:27%;
+    font-size:0.8rem;
+    color:var(--gold);
+    font-family: 'Orbitron';
+
+}
+
+.preview-age{
+    top:59%;
+    left:27%;
+    font-size:0.8rem;
+    color: var(--gold);
+    font-family: 'Orbitron';
+}
+
+.preview-date{
+    top:66%;
+    left:27%;
+    font-size:0.8rem;
+    color:var(--gold);
+    font-family: 'Orbitron';
+    }

@@ -1,10 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ titulo }}</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/globals.css">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/mockup.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+
+    <!-- FONT -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
+        rel="stylesheet"
+    >
+
 </head>
+
 <body>
 
+<div class="container">
+
+    <!-- MOCKUP -->
+    <section class="mockup-section">
+
+        <div class="mockup-wrapper">
+
+            <img
+                src="/static/img/mockup.png"
+                alt="Mockup"
+                class="mockup-image"
+            >
+
+            <!-- NOME -->
+            <span
+                id="preview-name"
+                class="mockup-text preview-name"
+            >
+                NOME AQUI
+            </span>
+
+            <!-- PATENTE -->
+            <span
+                id="preview-rank"
+                class="mockup-text preview-rank"
+            >
+                PATENTE AQUI
+            </span>
+
+            <!-- PASSAPORTE -->
+            <span
+                id="preview-passport"
+                class="mockup-text preview-passport"
+            >
+                Nº AQUI
+            </span>
+
+            <!-- IDADE -->
+            <span
+                id="preview-age"
+                class="mockup-text preview-age"
+            >
+                IDADE AQUI
+            </span>
+
+            <!-- DATA -->
+            <span
+                id="preview-date"
+                class="mockup-text preview-date"
+            >
+                DATA AQUI
+            </span>
+
+        </div>
+
+    </section>
+
+    <!-- FORM -->
+    <section class="form-section">
+
+        <div class="form-card">
+
+            <h1>GERADOR BAEC</h1>
+
+            <p>
+                Sistema de geração operacional
+            </p>
+
+            <form id="certificate-form">
+
+                <!-- NOME -->
+                <div class="input-group">
+
+                    <label>
+                        Nome do Oficial
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Digite o nome"
+                    >
+
+                </div>
+
+                <!-- PATENTE -->
+                <div class="input-group">
+
+                    <label>
+                        Patente
+                    </label>
+
+                    <select id="rank">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option>Soldado</option>
+                        <option>Cabo</option>
+                        <option>3º Sargento</option>
+                        <option>2º Sargento</option>
+                        <option>1º Sargento</option>
+                        <option>Subtenente</option>
+                        <option>Aspirante</option>
+                        <option>2º Tenente</option>
+                        <option>1º Tenente</option>
+                        <option>Capitão</option>
+                        <option>Major</option>
+                        <option>Tenente Coronel</option>
+                        <option>Coronel</option>
+
+                    </select>
+
+                </div>
+
+                <!-- PASSAPORTE -->
+                <div class="input-group">
+
+                    <label>
+                        Passaporte
+                    </label>
+
+                    <input
+                        type="text"
+                        id="passport"
+                        placeholder="Digite o passaporte"
+                    >
+
+                </div>
+
+                <!-- IDADE -->
+                <div class="input-group">
+
+                    <label>
+                        Idade
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Digite a idade"
+                    >
+
+                </div>
+
+                <!-- DATA -->
+                <div class="input-group">
+
+                    <label>
+                        Data de conclusão
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                    >
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- JS -->
+<script src="/static/js/formatter.js"></script>
+<script src="/static/js/preview.js"></script>
+<script src="/static/js/app.js"></script>
+
 </body>
+
 </html>

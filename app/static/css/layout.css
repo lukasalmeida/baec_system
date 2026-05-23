@@ -1,0 +1,33 @@
+.container{
+    display:flex;
+    width:100%;
+    min-height:100vh;
+}
+
+.mockup-section{
+    width:70%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(212,167,63,.08),
+            transparent 60%
+        );
+}
+
+.form-section{
+    width:30%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    background:
+        linear-gradient(
+            180deg,
+            #0d0d0d,
+            #111111
+        );
+}
