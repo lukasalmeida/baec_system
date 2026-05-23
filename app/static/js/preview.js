@@ -77,3 +77,35 @@ dateInput.addEventListener(
 
     }
 );
+
+const photoInput =
+    document.getElementById("photo");
+
+const previewPhoto =
+    document.getElementById("preview-photo");
+
+photoInput.addEventListener(
+    "change",
+    () => {
+
+        const file =
+            photoInput.files[0];
+
+        if (file) {
+
+            const reader =
+                new FileReader();
+
+            reader.onload = function (e) {
+
+                previewPhoto.src =
+                    e.target.result;
+
+            }
+
+            reader.readAsDataURL(file);
+
+        }
+
+    }
+);
