@@ -1,0 +1,17 @@
+# Ambiente virtual
+venv/
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Docker
+*.pid
