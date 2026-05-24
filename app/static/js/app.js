@@ -1,3 +1,3 @@
 console.log(
-    "BAEC SYSTEM INICIADO"
+    "SISTEMA BAEC INICIADO"
 );

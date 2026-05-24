@@ -14,10 +14,23 @@
     <link rel="stylesheet" href="/static/css/form.css">
     <link rel="stylesheet" href="/static/css/mockup.css">
     <link rel="stylesheet" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="/static/css/auth.css">
     <script src="https://kit.fontawesome.com/23fef3a553.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+<header class="topbar">
+    <span class="topbar-user">Usuario: {{ nome_usuario }}</span>
+    <div class="topbar-actions">
+        {% if pode_gerenciar_permissoes %}
+        <a href="/admin/permissoes" class="admin-link-button">Administrar permissoes</a>
+        {% endif %}
+        <form action="/logout" method="post">
+            <button type="submit" class="topbar-button">Sair</button>
+        </form>
+    </div>
+</header>
+
 <div class="container">
     <section class="mockup-section">
         <div class="mockup-wrapper">

@@ -1,111 +1,48 @@
-const nameInput =
-    document.getElementById("name");
+const campoNome = document.getElementById("name");
+const campoPatente = document.getElementById("rank");
+const campoPassaporte = document.getElementById("passport");
+const campoIdade = document.getElementById("age");
+const campoData = document.getElementById("date");
 
-const rankInput =
-    document.getElementById("rank");
+const visualizacaoNome = document.getElementById("preview-name");
+const visualizacaoPatente = document.getElementById("preview-rank");
+const visualizacaoPassaporte = document.getElementById("preview-passport");
+const visualizacaoIdade = document.getElementById("preview-age");
+const visualizacaoData = document.getElementById("preview-date");
 
-const passportInput =
-    document.getElementById("passport");
+campoNome.addEventListener("input", () => {
+    visualizacaoNome.innerText = campoNome.value || "NOME AQUI";
+});
 
-const ageInput =
-    document.getElementById("age");
+campoPatente.addEventListener("change", () => {
+    visualizacaoPatente.innerText = campoPatente.value || "PATENTE AQUI";
+});
 
-const dateInput =
-    document.getElementById("date");
+campoPassaporte.addEventListener("input", () => {
+    visualizacaoPassaporte.innerText = campoPassaporte.value || "Nº AQUI";
+});
 
-const previewName =
-    document.getElementById("preview-name");
+campoIdade.addEventListener("input", () => {
+    visualizacaoIdade.innerText = campoIdade.value || "IDADE AQUI";
+});
 
-const previewRank =
-    document.getElementById("preview-rank");
+campoData.addEventListener("input", () => {
+    visualizacaoData.innerText = formatarData(campoData.value);
+});
 
-const previewPassport =
-    document.getElementById("preview-passport");
+const campoFoto = document.getElementById("photo");
+const visualizacaoFoto = document.getElementById("preview-photo");
 
-const previewAge =
-    document.getElementById("preview-age");
+campoFoto.addEventListener("change", () => {
+    const arquivo = campoFoto.files[0];
 
-const previewDate =
-    document.getElementById("preview-date");
+    if (arquivo) {
+        const leitor = new FileReader();
 
-nameInput.addEventListener(
-    "input",
-    () => {
+        leitor.onload = (evento) => {
+            visualizacaoFoto.src = evento.target.result;
+        };
 
-        previewName.innerText =
-            nameInput.value || "NOME AQUI";
-
+        leitor.readAsDataURL(arquivo);
     }
-);
-
-rankInput.addEventListener(
-    "change",
-    () => {
-
-        previewRank.innerText =
-            rankInput.value || "PATENTE AQUI";
-
-    }
-);
-
-passportInput.addEventListener(
-    "input",
-    () => {
-
-        previewPassport.innerText =
-            passportInput.value || "Nº AQUI";
-
-    }
-);
-
-ageInput.addEventListener(
-    "input",
-    () => {
-
-        previewAge.innerText =
-            ageInput.value || "IDADE AQUI";
-
-    }
-);
-
-dateInput.addEventListener(
-    "input",
-    () => {
-
-        previewDate.innerText =
-            formatDate(dateInput.value);
-
-    }
-);
-
-const photoInput =
-    document.getElementById("photo");
-
-const previewPhoto =
-    document.getElementById("preview-photo");
-
-photoInput.addEventListener(
-    "change",
-    () => {
-
-        const file =
-            photoInput.files[0];
-
-        if (file) {
-
-            const reader =
-                new FileReader();
-
-            reader.onload = function (e) {
-
-                previewPhoto.src =
-                    e.target.result;
-
-            }
-
-            reader.readAsDataURL(file);
-
-        }
-
-    }
-);
+});

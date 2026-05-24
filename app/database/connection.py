@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = (
+URL_BANCO_DADOS = (
     "postgresql://"
     "baec_user:"
     "baec_password@"
@@ -9,12 +9,12 @@ DATABASE_URL = (
     "baec_db"
 )
 
-engine = create_engine(
-    DATABASE_URL
-)
+motor = create_engine(URL_BANCO_DADOS)
 
-SessionLocal = sessionmaker(
+SessaoLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
-    bind=engine
+    bind=motor
 )
+
+

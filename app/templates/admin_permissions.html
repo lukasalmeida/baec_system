@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Permissoes</title>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/globals.css">
+    <link rel="stylesheet" href="/static/css/auth.css">
+</head>
+<body class="admin-body">
+<header class="topbar">
+    <span class="topbar-user">Admin: {{ nome_usuario }}</span>
+    <div class="topbar-actions">
+        <a href="/gerar-breve" class="admin-link-button">Gerar Breve</a>
+        <form action="/logout" method="post">
+            <button type="submit" class="topbar-button">Sair</button>
+        </form>
+    </div>
+</header>
+
+<main class="admin-wrapper">
+    <h1>Painel de Permissoes</h1>
+
+    {% if mensagem %}
+    <div class="auth-success">{{ mensagem }}</div>
+    {% endif %}
+
+    {% if erro %}
+    <div class="auth-error">{{ erro }}</div>
+    {% endif %}
+
+    <section class="admin-card">
+        <h2>Nova permissao</h2>
+        <form action="/admin/permissoes/permission/create" method="post" class="admin-form-grid">
+            <input name="codigo" placeholder="codigo_ex: gerar_relatorio" required>
+            <input name="nome" placeholder="Nome da permissao" required>
+            <input name="descricao" placeholder="Descricao">
+            <button type="submit">Criar permissao</button>
+        </form>
+    </section>
+
+    <section class="admin-card">
+        <h2>Novo grupo</h2>
+        <form action="/admin/permissoes/group/create" method="post" class="admin-form-grid">
+            <input name="nome" placeholder="Nome do grupo" required>
+            <input name="descricao" placeholder="Descricao">
+            <button type="submit">Criar grupo</button>
+        </form>
+    </section>
+
+    <section class="admin-card">
+        <h2>Permissoes cadastradas</h2>
+        <div class="admin-list">
+            {% for permissao in permissoes %}
+            <form action="/admin/permissoes/permission/update/{{ permissao.id }}" method="post" class="admin-item">
+                <input type="text" name="codigo" value="{{ permissao.codigo }}" required>
+                <input type="text" name="nome" value="{{ permissao.nome }}" required>
+                <input type="text" name="descricao" value="{{ permissao.descricao or '' }}" placeholder="Descricao">
+                <button type="submit">Salvar</button>
+            </form>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="admin-card">
+        <h2>Grupos e permissoes</h2>
+        <div class="admin-list">
+            {% for grupo in grupos %}
+            <form action="/admin/permissoes/group/update/{{ grupo.id }}" method="post" class="admin-item">
+                <div class="admin-item-title">{{ grupo.nome }}</div>
+                <input type="text" name="descricao" value="{{ grupo.descricao or '' }}" placeholder="Descricao">
+                <div class="permissions-grid">
+                    {% for permissao in permissoes %}
+                    <label class="permission-label">
+                        <input
+                            type="checkbox"
+                            name="ids_permissoes"
+                            value="{{ permissao.id }}"
+                            {% if permissao in grupo.permissoes %}checked{% endif %}
+                        >
+                        {{ permissao.codigo }}
+                    </label>
+                    {% endfor %}
+                </div>
+                <button type="submit">Salvar grupo</button>
+            </form>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="admin-card">
+        <h2>Associar grupo a usuario</h2>
+        <div class="admin-list">
+            {% for usuario in usuarios %}
+            <form action="/admin/permissoes/user-group" method="post" class="admin-item-inline">
+                <input type="hidden" name="id_usuario" value="{{ usuario.id }}">
+                <span class="admin-user-name">{{ usuario.nome_usuario }}</span>
+                <select name="id_grupo" required>
+                    {% for grupo in grupos %}
+                    <option
+                        value="{{ grupo.id }}"
+                        {% if usuario.grupos and usuario.grupos[0].id == grupo.id %}selected{% endif %}
+                    >
+                        {{ grupo.nome }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Atualizar</button>
+            </form>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+</body>
+</html>

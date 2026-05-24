@@ -1,52 +1,33 @@
-const form = document.getElementById("certificate-form");
+const formulario = document.getElementById("certificate-form");
 
-form.addEventListener("submit", async (e) => {
+formulario.addEventListener("submit", async (evento) => {
+    evento.preventDefault();
 
-    e.preventDefault();
-
-    const formData = new FormData(form);
+    const dadosFormulario = new FormData(formulario);
 
     try {
-
-        const response = await fetch("/api/breve", {
-
+        const resposta = await fetch("/api/breve", {
             method: "POST",
-
-            body: formData
-
+            body: dadosFormulario,
         });
 
-        const data = await response.json();
+        const dadosResposta = await resposta.json();
+        console.log(dadosResposta);
 
-        console.log(data);
-
-        const mockup = document.querySelector(".mockup-wrapper");
-
-        const canvas = await html2canvas(mockup, {
-
+        const areaMockup = document.querySelector(".mockup-wrapper");
+        const telaRenderizada = await html2canvas(areaMockup, {
             useCORS: true,
-
-            scale: 3
-
+            scale: 3,
         });
 
-        const image = canvas.toDataURL("image/png");
+        const imagem = telaRenderizada.toDataURL("image/png");
+        const linkDownload = document.createElement("a");
 
-        const link = document.createElement("a");
-
-        link.href = image;
-
-        link.download = "breve-baec.png";
-
-        link.click();
-
-
-    } catch (error) {
-
-        console.error(error);
-
+        linkDownload.href = imagem;
+        linkDownload.download = "breve-baec.png";
+        linkDownload.click();
+    } catch (erro) {
+        console.error(erro);
         alert("Erro ao salvar.");
-
     }
-
 });

@@ -1,33 +1,27 @@
-from fastapi import (
-    APIRouter,
-    Form,
-    File,
-    UploadFile
-)
+from fastapi import APIRouter
+from fastapi import File
+from fastapi import Form
+from fastapi import Request
+from fastapi import UploadFile
 
+from app.auth.session import exigir_permissao_api
 from app.services.breve_service import criar_breve
+from app.services.rbac_service import PERMISSAO_GERAR_BREVE
 
-router = APIRouter(
-    prefix="/api",
-)
+roteador = APIRouter(prefix="/api")
 
 
-@router.post("/breve")
+@roteador.post("/breve")
 async def salvar_breve(
-
+    request: Request,
     nome: str = Form(...),
-
     patente: str = Form(...),
-
     passaporte: str = Form(...),
-
     idade: str = Form(...),
-
     data_conclusao: str = Form(...),
-
-    foto: UploadFile = File(...)
-
+    foto: UploadFile = File(...),
 ):
+    exigir_permissao_api(request, PERMISSAO_GERAR_BREVE)
 
     return criar_breve(
         nome,
@@ -35,5 +29,10 @@ async def salvar_breve(
         passaporte,
         idade,
         data_conclusao,
-        foto
+        foto,
     )
+
+
+
+
+

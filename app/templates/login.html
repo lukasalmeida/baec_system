@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAEC Login</title>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/globals.css">
+    <link rel="stylesheet" href="/static/css/auth.css">
+</head>
+<body class="auth-body">
+<main class="auth-wrapper">
+    <section class="auth-card">
+        <h1>BAEC SYSTEM</h1>
+        <p>
+            {% if modo == "register" %}
+            Crie seu usuario para acessar o sistema.
+            {% else %}
+            Entre com seu usuario para continuar.
+            {% endif %}
+        </p>
+
+        {% if mensagem_erro %}
+        <div class="auth-error">{{ mensagem_erro }}</div>
+        {% endif %}
+
+        {% if modo == "register" %}
+        <form action="/cadastro" method="post" class="auth-form">
+        {% else %}
+        <form action="/login" method="post" class="auth-form">
+        {% endif %}
+            <label for="nome_usuario">Usuario</label>
+            <input id="nome_usuario" name="nome_usuario" type="text" required value="{{ nome_usuario }}">
+
+            <label for="senha">Senha</label>
+            <input id="senha" name="senha" type="password" required>
+
+            {% if modo == "register" %}
+            <button type="submit">Criar conta</button>
+            {% else %}
+            <button type="submit">Entrar</button>
+            {% endif %}
+        </form>
+
+        {% if modo == "register" %}
+        <a href="/login" class="auth-link">Ja tem conta? Entrar</a>
+        {% else %}
+        <a href="/cadastro" class="auth-link">Criar conta</a>
+        {% endif %}
+    </section>
+</main>
+</body>
+</html>

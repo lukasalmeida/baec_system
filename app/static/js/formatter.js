@@ -1,12 +1,9 @@
-function formatDate(dateString){
-    if(!dateString){
+function formatarData(textoData) {
+    if (!textoData) {
         return "DATA AQUI";
     }
 
-    const date = new Date(dateString);
+    const data = new Date(textoData);
 
-    return date.toLocaleDateString(
-        "pt-BR"
-    );
-
+    return data.toLocaleDateString("pt-BR");
 }
