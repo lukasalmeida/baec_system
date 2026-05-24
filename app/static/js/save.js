@@ -40,7 +40,6 @@ form.addEventListener("submit", async (e) => {
 
         link.click();
 
-        alert("Brevê salvo com sucesso!");
 
     } catch (error) {
 

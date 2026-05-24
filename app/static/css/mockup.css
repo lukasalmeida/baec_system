@@ -66,6 +66,14 @@
     font-family: 'Orbitron';
 }
 
+.preview-id {
+    top: 85%;
+    left: 71%;
+    font-size: 1.2rem;
+    color: var(--bronze);
+    font-family: 'Orbitron';
+}
+
 .photo-container {
     position: absolute;
     top: 36%;
