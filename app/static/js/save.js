@@ -8,7 +8,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        const response = await fetch("api/breve", {
+        const response = await fetch("/api/breve", {
 
             method: "POST",
 
@@ -19,6 +19,26 @@ form.addEventListener("submit", async (e) => {
         const data = await response.json();
 
         console.log(data);
+
+        const mockup = document.querySelector(".mockup-wrapper");
+
+        const canvas = await html2canvas(mockup, {
+
+            useCORS: true,
+
+            scale: 3
+
+        });
+
+        const image = canvas.toDataURL("image/png");
+
+        const link = document.createElement("a");
+
+        link.href = image;
+
+        link.download = "breve-baec.png";
+
+        link.click();
 
         alert("Brevê salvo com sucesso!");
 
