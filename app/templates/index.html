@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/form.css">
     <link rel="stylesheet" href="/static/css/mockup.css">
     <link rel="stylesheet" href="/static/css/responsive.css">
+    <script src="https://kit.fontawesome.com/23fef3a553.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
             <img src="/static/img/mockup.png" alt="Mockup" class="mockup-image">
 
             <div class="photo-container">
-                <img src="" id="preview-photo" class="preview-photo" >
+                <img src="" id="preview-photo" class="preview-photo">
             </div>
 
             <span id="preview-name" class="mockup-text preview-name">
@@ -43,9 +44,13 @@
                     DATA AQUI
                 </span>
 
+            <div class="download-wrapper">
+                <button id="download-btn" type="submit" form="certificate-form">
+                    <i class="fa-solid fa-download"></i>
+                   BAIXAR BREVÊ
+                </button>
+            </div>
 
-
-        </div>
     </section>
     <section class="form-section">
         <div class="form-card">
@@ -54,15 +59,15 @@
                 Sistema de geração operacional
             </p>
 
-            <form id="certificate-form">
+            <form id="certificate-form" enctype="multipart/form-data">
                 <div class="input-group">
                     <label>Nome do Oficial</label>
-                    <input type="text" id="name" placeholder="Digite o nome">
+                    <input type="text" id="name" name="nome" placeholder="Digite o nome">
                 </div>
 
                 <div class="input-group">
                     <label>Patente</label>
-                    <select id="rank">
+                    <select id="rank" name="patente">
                         <option value="">Selecione</option>
 
                         <option>Soldado</option>
@@ -83,22 +88,22 @@
 
                 <div class="input-group">
                     <label>Passaporte</label>
-                    <input type="text" id="passport" placeholder="Digite o passaporte">
+                    <input type="text" id="passport" name="passaporte" placeholder="Digite o passaporte">
                 </div>
 
                 <div class="input-group">
                     <label>Idade</label>
-                    <input type="number" id="age" placeholder="Digite a idade">
+                    <input type="number" id="age" name="idade" placeholder="Digite a idade">
                 </div>
 
                 <div class="input-group">
                     <label>Data de conclusão</label>
-                    <input type="date" id="date">
+                    <input type="date" id="date" name="data_conclusao">
                 </div>
 
                 <div class="input-group">
                     <label for="photo">FOTO DO OFICIAL </label>
-                    <input type="file" id="photo" accept="image/*">
+                    <input type="file" id="photo" name="foto" accept="image/*">
                 </div>
             </form>
         </div>
@@ -108,6 +113,7 @@
 <script src="/static/js/formatter.js"></script>
 <script src="/static/js/preview.js"></script>
 <script src="/static/js/app.js"></script>
-
+<script src="/static/js/download.js"></script>
+<script src="/static/js/save.js"></script>
 </body>
 </html>

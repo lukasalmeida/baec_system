@@ -12,4 +12,45 @@ services:
     volumes:
       - .:/app
 
+    depends_on:
+      postgres:
+        condition: service_healthy
+
     restart: unless-stopped
+
+  postgres:
+
+    image: postgres:16
+
+    container_name: baec_postgres
+
+    environment:
+      POSTGRES_DB: baec_db
+      POSTGRES_USER: baec_user
+      POSTGRES_PASSWORD: baec_password
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U baec_user -d baec_db"
+        ]
+
+      interval: 5s
+
+      timeout: 5s
+
+      retries: 10
+
+    restart: unless-stopped
+
+volumes:
+
+  postgres_data:
