@@ -16,4 +16,7 @@ class Breve(Base):
     idade = Column(String)
     data_conclusao = Column(String)
     foto = Column(String)
+    ano = Column(Integer)
+    codigo = Column(String)
+    numero_sequencial = Column(Integer)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

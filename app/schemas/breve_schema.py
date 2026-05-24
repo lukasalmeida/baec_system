@@ -6,3 +6,6 @@ class BreveCreate(BaseModel):
     passaporte:str
     idade:str
     data_conclusao:str
+    foto:str
+    ano:str
+    codigo:str
