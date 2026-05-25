@@ -1,0 +1,74 @@
+.consulta-container {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background:
+        radial-gradient(circle at top, rgba(184, 201, 127, 0.12), transparent 45%),
+        linear-gradient(160deg, #0d130a, #12190d);
+}
+
+.consulta-card {
+    width: 100%;
+    max-width: 520px;
+    background: rgba(24, 33, 17, 0.95);
+    border: 1px solid #5f7344;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.consulta-card h1 {
+    margin: 0;
+    color: var(--military-highlight);
+    letter-spacing: 0.06rem;
+    text-transform: uppercase;
+}
+
+.consulta-card p {
+    margin: 0.8rem 0 1.2rem;
+    color: var(--military-muted);
+}
+
+.consulta-form {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.consulta-form label {
+    color: var(--military-highlight);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04rem;
+}
+
+.consulta-form input {
+    padding: 0.75rem;
+    border: 1px solid #49583a;
+    border-radius: 8px;
+    background: rgba(11, 16, 9, 0.85);
+    color: var(--military-text);
+}
+
+.consulta-form button {
+    margin-top: 0.4rem;
+    padding: 0.8rem;
+    border: 1px solid #86985f;
+    border-radius: 8px;
+    font-weight: 700;
+    color: #0d130a;
+    background: linear-gradient(180deg, #becf86, #9eb169);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.consulta-erro {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #7a342f;
+    background: rgba(122, 52, 47, 0.2);
+    color: #ffd4d1;
+}

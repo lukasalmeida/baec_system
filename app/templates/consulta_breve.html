@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+    <title>{{ titulo }}</title>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/globals.css">
+    <link rel="stylesheet" href="/static/css/auth.css">
+    <link rel="stylesheet" href="/static/css/consulta.css">
+</head>
+<body>
+<header class="topbar">
+    <span class="topbar-user">Usuario: {{ nome_usuario }}</span>
+    <div class="topbar-actions">
+        <a href="/gerar-breve" class="admin-link-button">Gerar breve</a>
+        {% if pode_gerenciar_permissoes %}
+        <a href="/admin/permissoes" class="admin-link-button">Administrar permissoes</a>
+        <a href="/admin/usuario" class="admin-link-button">Gestao de usuarios</a>
+        {% endif %}
+        <form action="/logout" method="post">
+            <button type="submit" class="topbar-button">Sair</button>
+        </form>
+    </div>
+</header>
+
+<main class="consulta-container">
+    <section class="consulta-card">
+        <h1>CONSULTAR BREVE</h1>
+        <p>Informe o codigo do breve no formato 26-001.</p>
+
+        {% if erro_consulta %}
+        <div class="consulta-erro">{{ erro_consulta }}</div>
+        {% endif %}
+
+        <form method="post" action="/consultar-breve" class="consulta-form">
+            <label for="codigo">Codigo do breve</label>
+            <input
+                type="text"
+                id="codigo"
+                name="codigo"
+                value="{{ codigo_informado }}"
+                placeholder="26-001"
+                required
+            >
+            <button type="submit">Pesquisar</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

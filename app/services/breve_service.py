@@ -7,6 +7,28 @@ from sqlalchemy import func
 from app.database.connection import SessaoLocal
 from app.database.models import Breve
 
+PREFIXO_CODIGO_BREVE = "BAEC"
+
+
+def normalizar_codigo_breve(codigo: str) -> str:
+    codigo_normalizado = (codigo or "").strip().upper().replace(" ", "")
+
+    if codigo_normalizado.startswith(f"{PREFIXO_CODIGO_BREVE}-"):
+        return codigo_normalizado[len(PREFIXO_CODIGO_BREVE) + 1 :]
+
+    return codigo_normalizado
+
+
+def montar_codigo_breve(codigo_base: str) -> str:
+    if not codigo_base:
+        return ""
+
+    codigo_normalizado = codigo_base.strip().upper()
+    if codigo_normalizado.startswith(f"{PREFIXO_CODIGO_BREVE}-"):
+        return codigo_normalizado
+
+    return f"{PREFIXO_CODIGO_BREVE}-{codigo_normalizado}"
+
 
 def gerar_codigo_breve(banco_dados):
     ano = datetime.now().strftime("%y")
@@ -23,9 +45,24 @@ def gerar_codigo_breve(banco_dados):
         novo_numero = ultimo_numero + 1
 
     numero_formatado = str(novo_numero).zfill(3)
-    codigo = f"{ano}-{numero_formatado}"
+    codigo = montar_codigo_breve(f"{ano}-{numero_formatado}")
 
     return codigo, novo_numero, int(ano)
+
+
+def buscar_breve_por_codigo(banco_dados, codigo: str):
+    codigo_base = normalizar_codigo_breve(codigo)
+    if not codigo_base:
+        return None
+
+    codigo_com_prefixo = montar_codigo_breve(codigo_base)
+
+    return (
+        banco_dados.query(Breve)
+        .filter(Breve.codigo.in_([codigo_base, codigo_com_prefixo]))
+        .order_by(Breve.id.desc())
+        .first()
+    )
 
 
 def criar_breve(

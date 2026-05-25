@@ -22,6 +22,7 @@
 <header class="topbar">
     <span class="topbar-user">Usuario: {{ nome_usuario }}</span>
     <div class="topbar-actions">
+        <a href="/gerar-breve" class="admin-link-button">Gerar breve</a>
         <a href="/consultar-breve" class="admin-link-button">Consultar breve</a>
         {% if pode_gerenciar_permissoes %}
         <a href="/admin/permissoes" class="admin-link-button">Administrar permissoes</a>
@@ -39,104 +40,85 @@
             <img src="/static/img/MOCKUP.png" alt="Mockup" class="mockup-image">
 
             <div class="photo-container">
-                <img src="" id="preview-photo" class="preview-photo">
+                <img src="{{ foto_url }}" id="preview-photo" class="preview-photo">
             </div>
 
             <span id="preview-name" class="mockup-text preview-name">
-                    NOME AQUI
-                </span>
+                {{ nome }}
+            </span>
 
             <span id="preview-rank" class="mockup-text preview-rank">
-                    PATENTE AQUI
-                </span>
+                {{ patente }}
+            </span>
 
             <span id="preview-passport" class="mockup-text preview-passport">
-                    Nº AQUI
-                </span>
+                {{ passaporte }}
+            </span>
 
             <span id="preview-age" class="mockup-text preview-age">
-                    IDADE AQUI
-                </span>
+                {{ idade }}
+            </span>
 
             <span id="preview-date" class="mockup-text preview-date">
-                    DATA AQUI
-                </span>
+                {{ data_conclusao_formatada }}
+            </span>
 
             <span id="preview-id" class="mockup-text preview-id">
-                {{codigo_exibicao}}
+                {{ codigo_exibicao }}
             </span>
 
         </div>
         <div class="download-wrapper">
-            <button id="download-btn" type="submit" form="certificate-form">
+            <button id="download-btn" type="button">
                 <i class="fa-solid fa-download"></i>
-                BAIXAR BREVÊ
+                BAIXAR BREVE
             </button>
         </div>
 
     </section>
     <section class="form-section">
         <div class="form-card">
-            <h1>REGISTRAR BREVÊ</h1>
+            <h1>DADOS DO BREVE</h1>
             <p>
-                Sistema de geração operacional
+                Visualizacao do breve consultado
             </p>
 
-            <form id="certificate-form" enctype="multipart/form-data">
+            <form id="certificate-form">
+                <div class="input-group">
+                    <label>Codigo</label>
+                    <input type="text" value="{{ codigo_exibicao }}" readonly>
+                </div>
+
                 <div class="input-group">
                     <label>Nome do Oficial</label>
-                    <input type="text" id="name" name="nome" placeholder="Digite o nome">
+                    <input type="text" value="{{ nome }}" readonly>
                 </div>
 
                 <div class="input-group">
                     <label>Patente</label>
-                    <select id="rank" name="patente">
-                        <option value="">Selecione</option>
-
-                        <option>Soldado</option>
-                        <option>Cabo</option>
-                        <option>3º Sargento</option>
-                        <option>2º Sargento</option>
-                        <option>1º Sargento</option>
-                        <option>Subtenente</option>
-                        <option>Aspirante</option>
-                        <option>2º Tenente</option>
-                        <option>1º Tenente</option>
-                        <option>Capitão</option>
-                        <option>Major</option>
-                        <option>Tenente Coronel</option>
-                        <option>Coronel</option>
-                    </select>
+                    <input type="text" value="{{ patente }}" readonly>
                 </div>
 
                 <div class="input-group">
                     <label>Passaporte</label>
-                    <input type="text" id="passport" name="passaporte" placeholder="Digite o passaporte">
+                    <input type="text" value="{{ passaporte }}" readonly>
                 </div>
 
                 <div class="input-group">
                     <label>Idade</label>
-                    <input type="number" id="age" name="idade" placeholder="Digite a idade">
+                    <input type="text" value="{{ idade }}" readonly>
                 </div>
 
                 <div class="input-group">
-                    <label>Data de conclusão</label>
-                    <input type="date" id="date" name="data_conclusao">
-                </div>
-
-                <div class="input-group">
-                    <label for="photo">FOTO DO OFICIAL </label>
-                    <input type="file" id="photo" name="foto" accept="image/*">
+                    <label>Data de conclusao</label>
+                    <input type="date" value="{{ data_conclusao }}" readonly>
                 </div>
             </form>
         </div>
     </section>
 </div>
 
-<script src="/static/js/formatter.js"></script>
-<script src="/static/js/preview.js"></script>
-<script src="/static/js/app.js"></script>
 <script src="/static/js/lib/html2canvas.min.js"></script>
-<script src="/static/js/save.js"></script>
+<script src="/static/js/download_breve.js"></script>
 </body>
 </html>
