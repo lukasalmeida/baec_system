@@ -15,7 +15,8 @@
             circle at center,
             rgba(212,167,63,.08),
             transparent 60%
-        );
+        ),
+        linear-gradient(145deg, #11170e, #1b2414);
 }
 
 .form-section{
@@ -27,7 +28,8 @@
     background:
         linear-gradient(
             180deg,
-            #0d0d0d,
-            #111111
+            #151d11,
+            #10170d
         );
+    border-left:1px solid rgba(184,201,127,.18);
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Usuarios</title>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/globals.css">
+    <link rel="stylesheet" href="/static/css/auth.css">
+</head>
+<body class="admin-body">
+<header class="topbar">
+    <span class="topbar-user">Admin: {{ nome_usuario }}</span>
+    <div class="topbar-actions">
+        <a href="/gerar-breve" class="admin-link-button">Gerar Breve</a>
+        <a href="/admin/permissoes" class="admin-link-button">Administrar permissoes</a>
+        <form action="/logout" method="post">
+            <button type="submit" class="topbar-button">Sair</button>
+        </form>
+    </div>
+</header>
+
+<main class="admin-wrapper">
+    <h1>Gestao de Usuarios</h1>
+
+    {% if mensagem %}
+    <div class="auth-success">{{ mensagem }}</div>
+    {% endif %}
+
+    {% if erro %}
+    <div class="auth-error">{{ erro }}</div>
+    {% endif %}
+
+    <section class="admin-card">
+        <h2>Novo usuario</h2>
+        <form action="/admin/usuario/create" method="post" class="admin-form-grid admin-form-grid-users">
+            <input name="nome_usuario" placeholder="Nome de usuario" required>
+            <input name="senha" type="password" placeholder="Senha (minimo 6 caracteres)" required>
+            <select name="id_grupo">
+                <option value="">Grupo padrao automatico</option>
+                {% for grupo in grupos %}
+                <option value="{{ grupo.id }}">{{ grupo.nome }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Criar usuario</button>
+        </form>
+    </section>
+
+    <section class="admin-card">
+        <h2>Usuarios cadastrados</h2>
+        <div class="admin-list">
+            {% for usuario in usuarios %}
+            <div class="admin-item">
+                <form action="/admin/usuario/update/{{ usuario.id }}" method="post" class="admin-form-grid admin-form-grid-users">
+                    <input type="text" name="nome_usuario" value="{{ usuario.nome_usuario }}" required>
+                    <input type="password" name="nova_senha" placeholder="Nova senha (deixe vazio para manter)">
+                    <select name="id_grupo" required>
+                        {% for grupo in grupos %}
+                        <option
+                            value="{{ grupo.id }}"
+                            {% if usuario.grupos and usuario.grupos[0].id == grupo.id %}selected{% endif %}
+                        >
+                            {{ grupo.nome }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Salvar</button>
+                </form>
+
+                <form action="/admin/usuario/delete/{{ usuario.id }}" method="post" class="admin-delete-form">
+                    <button type="submit" class="admin-danger-button">Excluir</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+</body>
+</html>
